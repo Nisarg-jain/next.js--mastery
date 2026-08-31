@@ -1,5 +1,5 @@
 import './globals.css';
-import Navigation from '@/components/navigation'; 
+import Navigation from '@/components/navigation';
 
 export const metadata = {
   title: 'DevSpace',
