@@ -1,4 +1,4 @@
-
+// src/app/products/[productid]/reviews/[reviewId]/page.tsx
 export default async function ProductReview({
   params,
 }: {
@@ -6,8 +6,10 @@ export default async function ProductReview({
 }) {
   const { productid, reviewId } = await params;
 
-  // Simulate a slow network response (2 seconds)
-  await new Promise((resolve) => setTimeout(resolve, 2000));
+  // Simulate an error when reviewId exceeds 1000
+  if (parseInt(reviewId) > 1000) {
+    throw new Error('Review not found or invalid review ID.');
+  }
 
   return (
     <div className="space-y-3">
