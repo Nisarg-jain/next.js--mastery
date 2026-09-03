@@ -11,6 +11,13 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  // Temporary test: set to true to test global-error.tsx, set to false for normal operation
+  const shouldCrashRoot = false;
+
+  if (shouldCrashRoot) {
+    throw new Error('Fatal crash in Root layout.tsx!');
+  }
+
   return (
     <html lang="en">
       <body className="min-h-screen flex flex-col justify-between font-sans">
