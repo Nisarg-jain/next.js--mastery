@@ -29,6 +29,6 @@
     ".next/types/**/*.ts",
     ".next/dev/types/**/*.ts",
     "**/*.mts"
-  ],
+, "src/app/products/[productid]/reviews/[reviewId]/error.tsx.nn"  ],
   "exclude": ["node_modules"]
 }
