@@ -4,12 +4,25 @@ export default function ComplexDashboardLayout({
   users,
   revenue,
   notifications,
+  login,
 }: {
   children: React.ReactNode;
   users: React.ReactNode;
   revenue: React.ReactNode;
   notifications: React.ReactNode;
+  login: React.ReactNode;
 }) {
+  // Simulate authentication state
+  const isLoggedIn = true; 
+
+  if (!isLoggedIn) {
+    return (
+      <div className="py-12">
+        {login}
+      </div>
+    );
+  }
+
   return (
     <div className="space-y-6">
       {/* Main children page */}
