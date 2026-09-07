@@ -1,12 +1,10 @@
 // src/app/comments/route.ts
 import { comments } from "./data";
 
-// GET handler to retrieve all comments
 export async function GET() {
   return Response.json(comments);
 }
 
-// POST handler to add a new comment
 export async function POST(request: Request) {
   const comment = await request.json();
   const newComment = {
