@@ -1,22 +1,26 @@
-import { cookies } from "next/headers";
-import Counter from "./counter";
+import { Suspense } from "react";
+import Reviews from "./reviews";
 
-export default async function RenderingDemoPage() {
-  const cookieStore = await cookies();
-  const theme = cookieStore.get("theme");
-  console.log("Rendering Demo: Dynamic Server Component evaluated!");
-
+export default function RenderingDemoPage() {
   return (
-    <div className="space-y-6 p-6">
+    <div className="p-6 space-y-6">
       <div>
-        <h1 className="text-2xl font-bold">Dynamic Rendering Demo</h1>
-        <p className="text-gray-600">Theme cookie: {theme?.value ?? "None"}</p>
-        <p className="text-sm text-gray-500">
-          Rendered at: {new Date().toLocaleTimeString()}
+        <h1 className="text-2xl font-bold">Streaming Demo Page</h1>
+        <p className="text-gray-600">
+          This fast shell renders and appears immediately from the server.
         </p>
       </div>
 
-      <Counter />
+      {/* Streaming boundary */}
+      <Suspense
+        fallback={
+          <div className="p-4 border border-dashed border-gray-400 rounded-lg animate-pulse text-gray-500">
+            Loading reviews (streaming in)...
+          </div>
+        }
+      >
+        <Reviews />
+      </Suspense>
     </div>
   );
 }
