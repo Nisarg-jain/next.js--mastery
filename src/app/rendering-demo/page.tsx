@@ -1,26 +1,24 @@
-import { Suspense } from "react";
-import Reviews from "./reviews";
+import InteractiveCounter from "./interactive-counter";
 
 export default function RenderingDemoPage() {
+  const serverGeneratedTimestamp = new Date().toLocaleTimeString();
+
   return (
     <div className="p-6 space-y-6">
-      <div>
-        <h1 className="text-2xl font-bold">Streaming Demo Page</h1>
+      <div className="border-b pb-4">
+        <h1 className="text-2xl font-bold text-gray-900">
+          Server and Client Composition
+        </h1>
         <p className="text-gray-600">
-          This fast shell renders and appears immediately from the server.
+          This shell is rendered entirely on the server.
+        </p>
+        <p className="text-sm text-gray-500">
+          Server build timestamp: {serverGeneratedTimestamp}
         </p>
       </div>
 
-      {/* Streaming boundary */}
-      <Suspense
-        fallback={
-          <div className="p-4 border border-dashed border-gray-400 rounded-lg animate-pulse text-gray-500">
-            Loading reviews (streaming in)...
-          </div>
-        }
-      >
-        <Reviews />
-      </Suspense>
+      {/* Composed Client Component receiving server props */}
+      <InteractiveCounter initialCount={5} />
     </div>
   );
 }
