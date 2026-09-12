@@ -1,24 +1,19 @@
-import { fetchServerData } from "./server-utils";
-import InteractiveCounter from "./interactive-counter";
+import ImageSlider from "./image-slider";
 
 export default function RenderingDemoPage() {
-  const secretData = fetchServerData();
-
   return (
     <div className="p-6 space-y-6">
       <div className="border-b pb-4">
         <h1 className="text-2xl font-bold text-gray-900">
-          Server-Only Code Guardrail Demo
+          Third-Party Packages in Server Components
         </h1>
         <p className="text-gray-600">
-          This data was fetched strictly on the server:
-        </p>
-        <p className="mt-2 font-mono text-sm bg-gray-100 p-2 rounded border inline-block text-green-700">
-          {secretData}
+          The page remains a Server Component, while the slider runs safely in a wrapped client boundary.
         </p>
       </div>
 
-      <InteractiveCounter initialCount={0} />
+      {/* The wrapped third-party component */}
+      <ImageSlider />
     </div>
   );
 }
