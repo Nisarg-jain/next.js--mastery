@@ -1,9 +1,13 @@
-import './globals.css';
-import Navigation from '@/components/navigation';
+import type { Metadata } from "next";
+import { Inter } from "next/font/google";
+import "./globals.css";
+import { ThemeProvider } from "../components/theme-provider";
 
-export const metadata = {
-  title: 'DevSpace',
-  description: 'Next.js 15 Learning Project',
+const inter = Inter({ subsets: ["latin"] });
+
+export const metadata: Metadata = {
+  title: "Next.js Rendering Patterns",
+  description: "Next.js 15 App Router Tutorial Demo",
 };
 
 export default function RootLayout({
@@ -11,32 +15,10 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  // Temporary test: set to true to test global-error.tsx, set to false for normal operation
-  const shouldCrashRoot = false;
-
-  if (shouldCrashRoot) {
-    throw new Error('Fatal crash in Root layout.tsx!');
-  }
-
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body className="min-h-screen flex flex-col justify-between font-sans">
-        <header className="border-b border-gray-200 bg-white sticky top-0 z-10">
-          <div className="max-w-5xl mx-auto px-6 py-4 flex items-center justify-between">
-            <span className="font-extrabold text-lg tracking-tight text-gray-900">
-              DevSpace
-            </span>
-            <Navigation />
-          </div>
-        </header>
-
-        <main className="flex-1 max-w-5xl w-full mx-auto px-6 py-8">
-          {children}
-        </main>
-
-        <footer className="border-t border-gray-200 bg-white mt-auto py-6 text-center text-sm text-gray-500">
-          © {new Date().getFullYear()} DevSpace. All rights reserved.
-        </footer>
+    <html lang="en">
+      <body className={inter.className}>
+        <ThemeProvider>{children}</ThemeProvider>
       </body>
     </html>
   );
